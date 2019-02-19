@@ -22,7 +22,6 @@ namespace OpenUserSecrets
 
         public State Current { get; private set; } = State.MissingPackage;
         private string userSecretId;
-        private string MessageFormat;
 
         private readonly ProjectCollection collection;
         private readonly string path;
@@ -41,43 +40,9 @@ namespace OpenUserSecrets
             MoveNext();
         }
 
-        private void Evaluate()
-        {
-            collection.UnloadAllProjects();
-            collection.LoadProject(path);
-
-            var csproj = collection.GetLoadedProjects(path).FirstOrDefault();
-            var isPackageExists = csproj.Items
-                .Where(x => x.ItemType == "PackageReference")
-                .Where(x => x.EvaluatedInclude == "Microsoft.Extensions.Configuration.UserSecrets")
-                .Any();
-            this.userSecretId = csproj.GetPropertyValue(propertyKey);
-
-            if (!isPackageExists)
-            {
-                Current = State.MissingPackage;
-                MessageFormat = "Please install required pacakge: {0}";
-            }
-            else if (string.IsNullOrWhiteSpace(this.userSecretId))
-            {
-                Current = State.UserSecretsEntryNotExists;
-                MessageFormat = "";
-            }
-            else if (!File.Exists(GetUserSecretFilePath(userSecretId)))
-            {
-                Current = State.UserSecretFileNotExists;
-                MessageFormat = "";
-            }
-            else
-            {
-                Current = State.UserSecretFileOpenable;
-                MessageFormat = "";
-            }
-        }
-
         public bool MoveNext()
         {
-            Evaluate();
+            UpdateState();
             Command = UpdateCommand();
             switch (Current)
             {
@@ -93,6 +58,36 @@ namespace OpenUserSecrets
             return false;
         }
 
+        private void UpdateState()
+        {
+            collection.UnloadAllProjects();
+            collection.LoadProject(path);
+
+            var csproj = collection.GetLoadedProjects(path).FirstOrDefault();
+            var isPackageExists = csproj.Items
+                .Where(x => x.ItemType == "PackageReference")
+                .Where(x => x.EvaluatedInclude == "Microsoft.Extensions.Configuration.UserSecrets")
+                .Any();
+            this.userSecretId = csproj.GetPropertyValue(propertyKey);
+
+            if (!isPackageExists)
+            {
+                Current = State.MissingPackage;
+            }
+            else if (string.IsNullOrWhiteSpace(this.userSecretId))
+            {
+                Current = State.UserSecretsEntryNotExists;
+            }
+            else if (!File.Exists(GetUserSecretFilePath(userSecretId)))
+            {
+                Current = State.UserSecretFileNotExists;
+            }
+            else
+            {
+                Current = State.UserSecretFileOpenable;
+            }
+        }
+
         private ICommand UpdateCommand()
         {
             ICommand command = null;
@@ -100,7 +95,7 @@ namespace OpenUserSecrets
             {
                 case State.MissingPackage:
                     var title = "Manage UserSecrets";
-                    var message = string.Format(MessageFormat, "Microsoft.Extensions.Configuration.UserSecrets");
+                    var message = "Please install required pacakge Microsoft.Extensions.Configuration.UserSecrets";
                     command = new MissingPackageCommand(package, title, message);
                     break;
                 case State.UserSecretsEntryNotExists:
