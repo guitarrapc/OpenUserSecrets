@@ -16,18 +16,17 @@ namespace OpenUserSecrets
             UserSecretFileOpenable,
         }
 
-        public ICommand Command { get; private set; }
-
         private static readonly string fileName = "secrets.json";
 
+        public ICommand Command { get; private set; }
         public State Current { get; private set; } = State.MissingPackage;
-        private string userSecretId;
 
         private readonly ProjectCollection collection;
         private readonly string path;
         private readonly string propertyKey;
         private readonly EnvDTE.DTE dte;
         private readonly Microsoft.VisualStudio.Shell.AsyncPackage package;
+        private string userSecretId;
 
         public UserSecretStateMachine(string path, string propertyKey, EnvDTE.DTE dte, Microsoft.VisualStudio.Shell.AsyncPackage package)
         {
