@@ -14,13 +14,13 @@ ASP.NET Core project has builtin support for "Manage UserSecrets" when installed
 
 This Extensions manage UserSecret on .NET Core Console/Generic Host.
 
-## What can do
+## What extension manage
 
-1. Add "UserSecretsId" PropertyItem entry to the .csproj
-1. Create "secret.json" file.
-1. Open "secret.json" directly on the Visual Studio.
+1. If PropertyItem "UserSecretsId" entry is missing in .csproj, add entry with random GUID.
+1. If "secret.json" file is missing, create file.
+1. Open "secret.json" on the Visual Studio.
 
-Status will output to Output Window.
+Current Status and secret path will output in Visual Studio OutputWindow.
 
 ## Q&A
 
