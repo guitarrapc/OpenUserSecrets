@@ -4,7 +4,7 @@ Adding shortcut on the right click context menu of Project in Solution Explorer.
 
 This Extension will offer access a secret like ASP.NET Core MVC Project has.
 
-> [access-a-secret
+> [Safe storage of app secrets in development in ASP.NET Core - access-a-secret
 ](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-2.2#access-a-secret)
 
 
