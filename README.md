@@ -1,5 +1,14 @@
 # OpenUserSecrets
 
+## Install
+
+You have 2 choice.
+
+1. Visual Studio > Tools > Extensions and Updates > search `Open UserSecrets`.
+1. Go to https://marketplace.visualstudio.com/items?itemName=guitarrapc.OpenUserSecrets and download > install.
+
+## How it works
+
 Visual Studio Extensions to manage UserSecret, generate and open UserSecret json.
 
 The Open User Secret makes it easy to manage UserSecrets and work with your .NET Core project.
