@@ -1,18 +1,16 @@
 # OpenUserSecrets
 
-Adding shortcut on the right click context menu of Project in Solution Explorer.
+Visual Studio Extensions to manage UserSecret, generate and open UserSecret json.
 
-This Extension will offer access a secret like ASP.NET Core MVC Project has.
+The Open User Secret makes it easy to manage UserSecrets and work with your .NET Core project.
 
-> [Safe storage of app secrets in development in ASP.NET Core - access-a-secret
-](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-2.2#access-a-secret)
+Right click ib the Project in Solution Explorer. You will find "Open UserSecret" in the Context menu and UserSecret's secret.json will be open in Visual Studio.
 
+![](docs/usage_contextmenu.png)
 
-## Motivation
+![](docs/usage_opensecretjson.png)
 
-ASP.NET Core project has builtin support for "Manage UserSecrets" when installed "Microsoft.Extensions.Configuration.UserSecrets", however it never appear when installed on .NET Core Console Project.
-
-This Extensions manage UserSecret on .NET Core Console/Generic Host.
+For more information about the extension, visit https://github.com/guitarrapc/OpenUserSecrets
 
 ## What extension manage
 
@@ -20,10 +18,22 @@ This Extensions manage UserSecret on .NET Core Console/Generic Host.
 1. If "secret.json" file is missing, create file.
 1. Open "secret.json" on the Visual Studio.
 
-Current Status and secret path will output in Visual Studio OutputWindow.
+> Current Status and secret path will output in Visual Studio OutputWindow.
+
+![](docs/usage_outputwindow.png)
+
+## Motivation
+
+ASP.NET Core project has builtin support for "Manage UserSecrets" when installed "Microsoft.Extensions.Configuration.UserSecrets", however it never appear when installed on .NET Core Console Project.
+
+This Extension will offer access UserSecret to .NET Core Console/Generic project, like ASP.NET Core MVC Project has.
+
+> [Safe storage of app secrets in development in ASP.NET Core - access-a-secret
+](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-2.2#access-a-secret)
 
 ## Q&A
 
 ### Why Microsoft.Extensions.Configuration.UserSecrets package not found message shown on output window?
+
 * for .NETCore Console Project, install Microsoft.Extensions.Configuration.UserSecrets to the project.
     * Use PackageReference NuGet management style.
