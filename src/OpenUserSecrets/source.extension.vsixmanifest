@@ -1,9 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="OpenUserSecrets.54a35f0b-9fd6-4d67-8c34-129c258283bd" Version="1.0" Language="en-US" Publisher="生 吉崎" />
-    <DisplayName>OpenUserSecrets</DisplayName>
-    <Description>Empty VSIX Project.</Description>
+    <Identity Id="OpenUserSecrets.54a35f0b-9fd6-4d67-8c34-129c258283bd" Version="1.0" Language="en-US" Publisher="guitarrapc" />
+    <DisplayName>Open UserSecrets</DisplayName>
+    <Description xml:space="preserve">Visual Studio Extensions to manage UserSecret, generate and open UserSecret json.</Description>
+    <MoreInfo>https://github.com/guitarrapc/OpenUserSecrets</MoreInfo>
+    <Tags>csproj, UserSecrets, .NETCore</Tags>
   </Metadata>
   <Installation>
     <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0, 16.0)" />

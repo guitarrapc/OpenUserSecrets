@@ -112,17 +112,12 @@ namespace OpenUserSecrets
                     // state still has next.
                     while (stateMachine.MoveNext())
                     {
-#if DEBUG
-                        Debug.Print($"Current State: {stateMachine.Current}");
-#endif
+                        _dte.PrintMessageLine($"current state: {stateMachine.Current}");
                         stateMachine.Command?.Execute();
                     }
 
-#if DEBUG
-                    Debug.Print($"Current State: {stateMachine.Current}");
-#endif
-
                     // final command
+                    _dte.PrintMessageLine($"current state: {stateMachine.Current}");
                     stateMachine.Command?.Execute();
                 }
                 catch (Exception ex)

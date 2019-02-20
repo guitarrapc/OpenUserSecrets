@@ -10,16 +10,16 @@ namespace OpenUserSecrets
     {
         internal enum State
         {
-            MissingPackage = 0,
             UserSecretsEntryNotExists,
             UserSecretFileNotExists,
             UserSecretFileOpenable,
         }
 
         private static readonly string fileName = "secrets.json";
+        private static readonly string requiredPackage = "Microsoft.Extensions.Configuration.UserSecrets";
 
         public ICommand Command { get; private set; }
-        public State Current { get; private set; } = State.MissingPackage;
+        public State Current { get; private set; } = State.UserSecretsEntryNotExists;
 
         private readonly ProjectCollection collection;
         private readonly string path;
@@ -27,6 +27,7 @@ namespace OpenUserSecrets
         private readonly EnvDTE.DTE dte;
         private readonly Microsoft.VisualStudio.Shell.AsyncPackage package;
         private string userSecretId;
+        private ICommand subCommand;
 
         public UserSecretStateMachine(string path, string propertyKey, EnvDTE.DTE dte, Microsoft.VisualStudio.Shell.AsyncPackage package)
         {
@@ -45,8 +46,6 @@ namespace OpenUserSecrets
             Command = UpdateCommand();
             switch (Current)
             {
-                case State.MissingPackage:
-                    return false;
                 case State.UserSecretsEntryNotExists:
                     return true;
                 case State.UserSecretFileNotExists:
@@ -63,17 +62,14 @@ namespace OpenUserSecrets
             collection.LoadProject(path);
 
             var csproj = collection.GetLoadedProjects(path).FirstOrDefault();
-            var isPackageExists = csproj.Items
+            var packageExists = csproj.Items
                 .Where(x => x.ItemType == "PackageReference")
-                .Where(x => x.EvaluatedInclude == "Microsoft.Extensions.Configuration.UserSecrets")
+                .Where(x => x.EvaluatedInclude == requiredPackage)
                 .Any();
             this.userSecretId = csproj.GetPropertyValue(propertyKey);
+            this.subCommand = packageExists ? null : new MissingPackageCommand(dte, requiredPackage);
 
-            if (!isPackageExists)
-            {
-                Current = State.MissingPackage;
-            }
-            else if (string.IsNullOrWhiteSpace(this.userSecretId))
+            if (string.IsNullOrWhiteSpace(this.userSecretId))
             {
                 Current = State.UserSecretsEntryNotExists;
             }
@@ -92,19 +88,14 @@ namespace OpenUserSecrets
             ICommand command = null;
             switch (Current)
             {
-                case State.MissingPackage:
-                    var title = "Manage UserSecrets";
-                    var message = "Please install required pacakge Microsoft.Extensions.Configuration.UserSecrets";
-                    command = new MissingPackageCommand(package, title, message);
-                    break;
                 case State.UserSecretsEntryNotExists:
-                    command = new UserSecretsEntryNotExistsCommand(propertyKey, path);
+                    command = new UserSecretsEntryNotExistsCommand(propertyKey, path, subCommand);
                     break;
                 case State.UserSecretFileNotExists:
-                    command = new UserSecretFileNotExistsCommand(GetFilePath());
+                    command = new UserSecretFileNotExistsCommand(GetFilePath(), subCommand);
                     break;
                 case State.UserSecretFileOpenable:
-                    command = new UserSecretFileOpenableCommand(dte, GetFilePath());
+                    command = new UserSecretFileOpenableCommand(dte, GetFilePath(), subCommand);
                     break;
             }
             return command;

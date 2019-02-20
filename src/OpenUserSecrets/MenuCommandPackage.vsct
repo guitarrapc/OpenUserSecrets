@@ -56,7 +56,7 @@
         <Parent guid="guidMenuCommandPackageCmdSet" id="EditorContextMenuGroup" />
         <!--<Icon guid="guidImages" id="bmpPic1" />-->
         <Strings>
-          <ButtonText>Manage UserSecrets</ButtonText>
+          <ButtonText>Open UserSecrets</ButtonText>
         </Strings>
       </Button>
     </Buttons>
