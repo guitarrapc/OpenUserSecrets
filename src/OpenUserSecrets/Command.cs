@@ -56,7 +56,10 @@ namespace OpenUserSecrets
 
             if (!File.Exists(path))
             {
-                using (File.Create(path)) { }
+                using (var writer = new StreamWriter(path, false))
+                {
+                    writer.Write("{\n\n}");
+                }
             }
         }
     }
