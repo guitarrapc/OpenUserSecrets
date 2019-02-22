@@ -22,7 +22,7 @@ namespace ConsoleApp1
                     // json
                     config.SetBasePath(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location))
                         .AddJsonFile($"appsettings.json")
-                        .AddJsonFile($"appsettings.{hostContext.HostingEnvironment.EnvironmentName}.json");
+                        .AddJsonFile($"appsettings.{env.EnvironmentName}.json");
 
                     // user secrets for local development
                     if (env.IsDevelopment())
