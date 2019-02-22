@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell;
 using System;
 using System.IO;
 using System.Linq;
@@ -56,7 +56,10 @@ namespace OpenUserSecrets
 
             if (!File.Exists(path))
             {
-                using (File.Create(path)) { }
+                using (var writer = new StreamWriter(path, false))
+                {
+                    writer.Write("{\n\n}");
+                }
             }
         }
     }

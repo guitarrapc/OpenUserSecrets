@@ -1,0 +1,17 @@
+image: Visual Studio 2017
+version: '1.0.{build}'
+shallow_clone: false
+pull_requests:
+  do_not_increment_build_number: false
+
+configuration: Release
+platform: Any CPU
+
+before_build:
+ - nuget restore src/OpenUserSecrets.sln
+
+build:
+  project: src/OpenUserSecrets.sln
+
+artifacts:
+- path: '**\*.vsix'
