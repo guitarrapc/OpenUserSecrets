@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -21,8 +21,8 @@ namespace ConsoleApp1
 
                     // json
                     config.SetBasePath(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location))
-                        .AddJsonFile($"appsettings.json")
-                        .AddJsonFile($"appsettings.{env.EnvironmentName}.json");
+                        .AddJsonFile($"appsettings.json", optional: true, reloadOnChange: true)
+                        .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
 
                     // user secrets for local development
                     if (env.IsDevelopment())
