@@ -46,3 +46,12 @@ This Extension will offer access UserSecret to .NET Core Console/Generic project
 
 * for .NETCore Console Project, install Microsoft.Extensions.Configuration.UserSecrets to the project.
     * Use PackageReference NuGet management style.
+
+## Versions
+
+See https://github.com/guitarrapc/OpenUserSecrets/releases for detail.
+
+* 1.0.3 : fix: extension installation to vs2019 blocked by missing Visual Studio MPF 15.0
+* 1.0.2 : feat: add empty json when secrets.json is created via extension
+* 1.0.1 : feat: add vs2019 support
+* 1.0.0 : Initial release
