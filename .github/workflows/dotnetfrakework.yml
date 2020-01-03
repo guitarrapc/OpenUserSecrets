@@ -12,8 +12,7 @@ jobs:
     - name: Setup MSBuild.exe
       uses: warrenbuckley/Setup-MSBuild@v1
     - name: Build with msbuild
-      run: MSBuild.exe OpenUserSecrets.csproj -p:Configuration=Release
-      working-directory: $Env:GITHUB_WORKSPACE\src\OpenUserSecrets
+      run: MSBuild.exe $Env:GITHUB_WORKSPACE\src\OpenUserSecrets\OpenUserSecrets.csproj -p:Configuration=Release
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
       with:
