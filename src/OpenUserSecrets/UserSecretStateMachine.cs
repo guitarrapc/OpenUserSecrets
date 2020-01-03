@@ -10,6 +10,7 @@ namespace OpenUserSecrets
     {
         internal enum State
         {
+            UserSecretsByWeb,
             UserSecretsEntryNotExists,
             UserSecretFileNotExists,
             UserSecretFileOpenable,
@@ -52,6 +53,8 @@ namespace OpenUserSecrets
                     return true;
                 case State.UserSecretFileOpenable:
                     return false;
+                case State.UserSecretsByWeb:
+                    return false;
             }
             return false;
         }
@@ -62,13 +65,32 @@ namespace OpenUserSecrets
             collection.LoadProject(path);
 
             var csproj = collection.GetLoadedProjects(path).FirstOrDefault();
+            var isWebProject = csproj.Xml.Sdk == "Microsoft.NET.Sdk.Web"; // Special project type which include UserSecrets in SDK.
             var packageExists = csproj.Items
                 .Where(x => x.ItemType == "PackageReference")
                 .Where(x => x.EvaluatedInclude == requiredPackage)
                 .Any();
             this.userSecretId = csproj.GetPropertyValue(propertyKey);
-            this.subCommand = packageExists ? null : new MissingPackageCommand(dte, requiredPackage);
 
+            // subcommand
+            if (isWebProject)
+            {
+                this.subCommand = new WebProjectCommand(dte, csproj.Xml.Sdk);
+            }
+            else if (!packageExists)
+            {
+                this.subCommand = new MissingPackageCommand(dte, requiredPackage);
+            }
+            else
+            {
+                this.subCommand = null;
+            }
+
+            // state
+            if (isWebProject)
+            {
+                Current = State.UserSecretsByWeb;
+            }
             if (string.IsNullOrWhiteSpace(this.userSecretId))
             {
                 Current = State.UserSecretsEntryNotExists;
@@ -95,6 +117,9 @@ namespace OpenUserSecrets
                     command = new UserSecretFileNotExistsCommand(GetFilePath(), subCommand);
                     break;
                 case State.UserSecretFileOpenable:
+                    command = new UserSecretFileOpenableCommand(dte, GetFilePath(), subCommand);
+                    break;
+                case State.UserSecretsByWeb:
                     command = new UserSecretFileOpenableCommand(dte, GetFilePath(), subCommand);
                     break;
             }

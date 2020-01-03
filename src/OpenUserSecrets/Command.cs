@@ -135,4 +135,21 @@ namespace OpenUserSecrets
             dte.PrintMessageLine(message);
         }
     }
+
+    internal class WebProjectCommand : ICommand
+    {
+        private readonly EnvDTE.DTE dte;
+        private readonly string sdk;
+        public WebProjectCommand(EnvDTE.DTE dte, string sdk)
+        {
+            this.dte = dte;
+            this.sdk = sdk;
+        }
+
+        public void Execute()
+        {
+            var message = $"Detected {sdk} which include UserSecrets in Sdk.";
+            dte.PrintMessageLine(message);
+        }
+    }
 }
