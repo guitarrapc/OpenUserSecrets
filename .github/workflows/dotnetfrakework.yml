@@ -1,0 +1,25 @@
+name: .NET Framework
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: windows-2019
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup Nuget.exe
+      uses: warrenbuckley/Setup-Nuget@v1
+    - name: NuGet Restore
+      run: nuget restore $Env:GITHUB_WORKSPACE\src\OpenUserSecrets\OpenUserSecrets.csproj
+    - name: Setup MSBuild.exe
+      uses: warrenbuckley/Setup-MSBuild@v1
+    - name: Build with msbuild
+      run: MSBuild.exe $Env:GITHUB_WORKSPACE\src\OpenUserSecrets\OpenUserSecrets.csproj -p:Configuration=Release
+      timeout-minutes: 5
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+          name: artifacts
+          path: src\OpenUserSecrets\bin\Release\OpenUserSecrets.vsix
