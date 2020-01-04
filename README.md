@@ -1,6 +1,4 @@
-[![Actions Status](https://github.com/guitarrapc/OpenUserSecrets/workflows/build/badge.svg)](https://github.com/guitarrapc/OpenUserSecrets/actions) [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
-
-[![Generic badge](https://img.shields.io/badge/vs2017-supported-blue.svg)](https://shields.io/) [![Generic badge](https://img.shields.io/badge/vs2019-supported-blue.svg)](https://shields.io/)
+[![Actions Status](https://github.com/guitarrapc/OpenUserSecrets/workflows/build/badge.svg)](https://github.com/guitarrapc/OpenUserSecrets/actions) [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE) [![Generic badge](https://img.shields.io/badge/vs2017-supported-blue.svg)](https://shields.io/) [![Generic badge](https://img.shields.io/badge/vs2019-supported-blue.svg)](https://shields.io/)
 
 
 # OpenUserSecrets
@@ -36,9 +34,9 @@ The Open User Secret makes it easy to manage UserSecrets and work with your .NET
 
 Right click ib the Project in Solution Explorer. You will find "Open UserSecret" in the Context menu and UserSecret's secret.json will be open in Visual Studio.
 
-![](docs/usage_contextmenu.png)
+![image](https://user-images.githubusercontent.com/3856350/71758201-32ea7680-2ee0-11ea-9cb7-3dc8193afc22.png)
 
-![](docs/usage_opensecretjson.png)
+![image](https://user-images.githubusercontent.com/3856350/71758203-41389280-2ee0-11ea-84c3-7885e9c14abe.png)
 
 For more information about the extension, visit https://github.com/guitarrapc/OpenUserSecrets
 
@@ -50,8 +48,7 @@ For more information about the extension, visit https://github.com/guitarrapc/Op
 
 > Current Status and secret path will output in Visual Studio OutputWindow.
 
-![](docs/usage_outputwindow.png)
-
+![image](https://user-images.githubusercontent.com/3856350/71758205-47c70a00-2ee0-11ea-81bd-a53d1fa437f0.png)
 
 ## Q&A
 
