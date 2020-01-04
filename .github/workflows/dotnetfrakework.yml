@@ -13,12 +13,11 @@ jobs:
       uses: warrenbuckley/Setup-Nuget@v1
     - name: NuGet Restore
       run: nuget restore $Env:GITHUB_WORKSPACE\src\OpenUserSecrets\OpenUserSecrets.csproj
-    - name: Initialize Visual Studio Experimental Instance
-      run: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\devenv.exe /RootSuffix Exp /ResetSettings General.vssettings /Embedding /Command File.Exit
     - name: Setup MSBuild.exe
       uses: warrenbuckley/Setup-MSBuild@v1
     - name: Build with msbuild
       run: MSBuild.exe $Env:GITHUB_WORKSPACE\src\OpenUserSecrets\OpenUserSecrets.csproj -p:Configuration=Release
+      timeout-minutes: 5
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
       with:
