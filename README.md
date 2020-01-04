@@ -1,6 +1,4 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/bkvll0scx9otg7u6?svg=true)](https://ci.appveyor.com/project/guitarrapc/openusersecrets)
-[![Generic badge](https://img.shields.io/badge/.NETCore-GenericHost-yellow.svg)](https://shields.io/)
-[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
+[![Actions Status](https://github.com/guitarrapc/OpenUserSecrets/workflows/build/badge.svg)](https://github.com/guitarrapc/OpenUserSecrets/actions) [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
 
 [![Generic badge](https://img.shields.io/badge/vs2017-supported-blue.svg)](https://shields.io/) [![Generic badge](https://img.shields.io/badge/vs2019-supported-blue.svg)](https://shields.io/)
 
