@@ -1,4 +1,4 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/bkvll0scx9otg7u6?svg=true)](https://ci.appveyor.com/project/guitarrapc/openusersecrets) 
+[![Build status](https://ci.appveyor.com/api/projects/status/bkvll0scx9otg7u6?svg=true)](https://ci.appveyor.com/project/guitarrapc/openusersecrets)
 [![Generic badge](https://img.shields.io/badge/.NETCore-GenericHost-yellow.svg)](https://shields.io/)
 [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
 
@@ -6,6 +6,22 @@
 
 
 # OpenUserSecrets
+
+## Motivation
+
+**UPDATE: 04/Jan/2020**
+
+I believe VS2019 has built in support for `Manage UserSecrets` in Console App, too.
+You don't need use this extensions if you found context menu.
+
+**Original**
+
+ASP.NET Core project has builtin support for "Manage UserSecrets" when installed "Microsoft.Extensions.Configuration.UserSecrets", however it never appear when installed on .NET Core Console Project.
+
+This Extension will offer access UserSecret to .NET Core Console/Generic project, like ASP.NET Core MVC Project has.
+
+> [Safe storage of app secrets in development in ASP.NET Core - access-a-secret
+](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-2.2#access-a-secret)
 
 ## Install
 
@@ -38,14 +54,6 @@ For more information about the extension, visit https://github.com/guitarrapc/Op
 
 ![](docs/usage_outputwindow.png)
 
-## Motivation
-
-ASP.NET Core project has builtin support for "Manage UserSecrets" when installed "Microsoft.Extensions.Configuration.UserSecrets", however it never appear when installed on .NET Core Console Project.
-
-This Extension will offer access UserSecret to .NET Core Console/Generic project, like ASP.NET Core MVC Project has.
-
-> [Safe storage of app secrets in development in ASP.NET Core - access-a-secret
-](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-2.2#access-a-secret)
 
 ## Q&A
 
