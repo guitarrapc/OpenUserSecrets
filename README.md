@@ -64,6 +64,7 @@ For more information about the extension, visit https://github.com/guitarrapc/Op
 
 See https://github.com/guitarrapc/OpenUserSecrets/releases for detail.
 
+* 1.1.0 : feat: add ASP.NET Core project detection support and suppress nuget install
 * 1.0.3 : fix: extension installation to vs2019 blocked by missing Visual Studio MPF 15.0
 * 1.0.2 : feat: add empty json when secrets.json is created via extension
 * 1.0.1 : feat: add vs2019 support
