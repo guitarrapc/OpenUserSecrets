@@ -22,4 +22,4 @@ jobs:
       uses: actions/upload-artifact@v1.0.0
       with:
           name: vsix
-          path: $Env:GITHUB_WORKSPACE\src\OpenUserSecrets\bin\Release\OpenUserSecrets.vsix
+          path: src\OpenUserSecrets\bin\Release\OpenUserSecrets.vsix
