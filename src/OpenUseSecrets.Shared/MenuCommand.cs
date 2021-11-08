@@ -49,22 +49,12 @@ namespace OpenUserSecrets
         /// <summary>
         /// Gets the instance of the command.
         /// </summary>
-        public static ProjectContextMenuCommand Instance
-        {
-            get;
-            private set;
-        }
+        public static ProjectContextMenuCommand Instance { get; private set; }
 
         /// <summary>
         /// Gets the service provider from the owner package.
         /// </summary>
-        private Microsoft.VisualStudio.Shell.IAsyncServiceProvider ServiceProvider
-        {
-            get
-            {
-                return this.package;
-            }
-        }
+        private Microsoft.VisualStudio.Shell.IAsyncServiceProvider ServiceProvider => this.package;
 
         /// <summary>
         /// Initializes the singleton instance of the command.

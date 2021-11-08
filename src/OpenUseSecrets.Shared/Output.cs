@@ -1,5 +1,3 @@
-using EnvDTE;
-using EnvDTE80;
 using System;
 
 namespace OpenUserSecrets
@@ -31,8 +29,8 @@ __      ___                 _  _____ _             _ _       ______      _      
         public static void PrintMessage(this EnvDTE.DTE dte, string message)
         {
             Microsoft.VisualStudio.Shell.ThreadHelper.ThrowIfNotOnUIThread();
-            var panes = ((DTE2)dte).ToolWindows.OutputWindow.OutputWindowPanes;
-            OutputWindowPane outputPane = null;
+            var panes = ((EnvDTE80.DTE2)dte).ToolWindows.OutputWindow.OutputWindowPanes;
+            EnvDTE.OutputWindowPane outputPane = null;
             try
             {
                 outputPane = panes.Item(paneName);
